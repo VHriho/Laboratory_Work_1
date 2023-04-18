@@ -2,24 +2,27 @@
     public int add(String numbers){
 <span class="fc bfc" id="L3" title="All 2 branches covered.">        if (numbers.isEmpty())</span>
 <span class="fc" id="L4">            return 0;</span>
+<span class="fc bfc" id="L5" title="All 4 branches covered.">        if (numbers.contains(&quot;,\n&quot;) || numbers.contains(&quot;\n,&quot;))</span>
+<span class="fc" id="L6">            throw new RuntimeException(&quot;INPUT INCORRECT! contains invalid: \\n&quot;);</span>
         else
-<span class="fc" id="L6">            return sum(numbers);</span>
+<span class="fc" id="L8">            return sum(numbers);</span>
     }
 
     public int sum(String args){
-<span class="fc" id="L10">        String[] str = args.split(&quot;,&quot;);</span>
-<span class="fc" id="L11">        int result = 0;</span>
+<span class="fc" id="L12">        args = args.replaceAll(&quot;\n&quot;, &quot;,&quot;);</span>
+<span class="fc" id="L13">        String[] str = args.split(&quot;,&quot;);</span>
+<span class="fc" id="L14">        int result = 0;</span>
         int summing;
-<span class="fc bfc" id="L13" title="All 2 branches covered.">        for (int i = 0; i &lt; str.length; i++){</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        for (int i = 0; i &lt; str.length; i++){</span>
             try{
-<span class="fc" id="L15">                summing = Integer.parseInt(str[i]);</span>
+<span class="fc" id="L18">                summing = Integer.parseInt(str[i]);</span>
             }
-<span class="nc" id="L17">            catch (Exception e){</span>
-<span class="nc" id="L18">                throw new RuntimeException(&quot;INPUT INCORRECT! contains invalid: delimiter&quot;);</span>
-<span class="fc" id="L19">            }</span>
-<span class="fc" id="L20">            result += summing;</span>
+<span class="nc" id="L20">            catch (Exception e){</span>
+<span class="nc" id="L21">                throw new RuntimeException(&quot;INPUT INCORRECT! contains invalid: delimiter&quot;);</span>
+<span class="fc" id="L22">            }</span>
+<span class="fc" id="L23">            result += summing;</span>
         }
-<span class="fc" id="L22">        return result;</span>
+<span class="fc" id="L25">        return result;</span>
     }
 
 }

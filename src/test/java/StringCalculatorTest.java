@@ -18,4 +18,23 @@ class StringCalculatorTest {
         assertEquals(10, StrCalculator.add("1,2,3,4"));
         assertEquals(60, StrCalculator.add("10,20,30"));
     }
+
+    @Test
+    public void Test_3(){
+        assertEquals(6, StrCalculator.add("1\n2,3"));
+        assertEquals(6, StrCalculator.add("1\n2\n3"));
+        assertEquals(15, StrCalculator.add("1\n2\n3\n4\n5"));
+        try{
+            StrCalculator.add("1,\n");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains invalid: \\n", e.getMessage());
+        }
+        try{
+            StrCalculator.add("\n,1");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains invalid: \\n", e.getMessage());
+        }
+    }
 }
