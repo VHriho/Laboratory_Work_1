@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator{
     public int add(String numbers){
         if (numbers.isEmpty())
@@ -11,6 +14,7 @@ public class StringCalculator{
     }
 
     public int sum(String args){
+        List<Integer> list_of_negatives = new ArrayList<Integer>();
         args = args.replaceAll("\n", ",");
         String[] str = args.split(",");
         int result = 0;
@@ -22,8 +26,12 @@ public class StringCalculator{
             catch (Exception e){
                 throw new RuntimeException("INPUT INCORRECT! contains invalid: delimiter");
             }
+            if(summing < 0)
+                list_of_negatives.add(summing);
             result += summing;
         }
+        if(!list_of_negatives.isEmpty())
+            throw new RuntimeException("INPUT INCORRECT! contains: negative " + list_of_negatives);
         return result;
     }
 

@@ -57,4 +57,32 @@ class StringCalculatorTest {
             assertEquals("INPUT INCORRECT! contains invalid: delimiter", e.getMessage());
         }
     }
+
+    @Test
+    public void Test_5(){
+        try{
+            StrCalculator.add("-1,-2");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains: negative [-1, -2]", e.getMessage());
+        }
+        try{
+            StrCalculator.add("-1,1,-1");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains: negative [-1, -1]", e.getMessage());
+        }
+        try{
+            StrCalculator.add("-1,1\n-1");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains: negative [-1, -1]", e.getMessage());
+        }
+        try{
+            StrCalculator.add("//;\n-1;-2");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains: negative [-1, -2]", e.getMessage());
+        }
+    }
 }
