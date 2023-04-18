@@ -28,20 +28,22 @@ import java.util.List;
 <span class="fc" id="L28">            }</span>
 <span class="fc bfc" id="L29" title="All 2 branches covered.">            if(summing &lt; 0)</span>
 <span class="fc" id="L30">                list_of_negatives.add(summing);</span>
-<span class="fc" id="L31">            result += summing;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            if (summing &gt; 1000)</span>
+<span class="fc" id="L32">                continue;</span>
+<span class="fc" id="L33">            result += summing;</span>
         }
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        if(!list_of_negatives.isEmpty())</span>
-<span class="fc" id="L34">            throw new RuntimeException(&quot;INPUT INCORRECT! contains: negative &quot; + list_of_negatives);</span>
-<span class="fc" id="L35">        return result;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if(!list_of_negatives.isEmpty())</span>
+<span class="fc" id="L36">            throw new RuntimeException(&quot;INPUT INCORRECT! contains: negative &quot; + list_of_negatives);</span>
+<span class="fc" id="L37">        return result;</span>
     }
 
     public String delimiter(String args) {
         Character delimiter_in_char;
-<span class="fc" id="L40">        args = args.substring(2);</span>
-<span class="fc" id="L41">        delimiter_in_char = args.charAt(0);</span>
 <span class="fc" id="L42">        args = args.substring(2);</span>
-<span class="fc" id="L43">        args = args.replaceAll(delimiter_in_char.toString(), &quot;,&quot;);</span>
-<span class="fc" id="L44">        return args;</span>
+<span class="fc" id="L43">        delimiter_in_char = args.charAt(0);</span>
+<span class="fc" id="L44">        args = args.substring(2);</span>
+<span class="fc" id="L45">        args = args.replaceAll(delimiter_in_char.toString(), &quot;,&quot;);</span>
+<span class="fc" id="L46">        return args;</span>
     }
 
 }

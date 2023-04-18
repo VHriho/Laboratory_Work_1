@@ -85,4 +85,11 @@ class StringCalculatorTest {
             assertEquals("INPUT INCORRECT! contains: negative [-1, -2]", e.getMessage());
         }
     }
+
+    @Test
+    public void Test_6(){
+        assertEquals(1000, StrCalculator.add("1000,1001"));
+        assertEquals(1999, StrCalculator.add("1000,999,1001,1200"));
+        assertEquals(1000, StrCalculator.add("//;\n1000;1001"));
+    }
 }

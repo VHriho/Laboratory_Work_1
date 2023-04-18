@@ -28,6 +28,8 @@ public class StringCalculator{
             }
             if(summing < 0)
                 list_of_negatives.add(summing);
+            if (summing > 1000)
+                continue;
             result += summing;
         }
         if(!list_of_negatives.isEmpty())
