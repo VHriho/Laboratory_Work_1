@@ -37,4 +37,24 @@ class StringCalculatorTest {
             assertEquals("INPUT INCORRECT! contains invalid: \\n", e.getMessage());
         }
     }
+
+    @Test
+    public void Test_4(){
+        assertEquals(3, StrCalculator.add("//;\n1;2"));
+        assertEquals(6, StrCalculator.add("//;\n1;2;3"));
+        assertEquals(6, StrCalculator.add("//;\n1;2\n3"));
+        assertEquals(15, StrCalculator.add("//-\n1-2-3-4-5"));
+        try{
+            StrCalculator.add("//;\n1#2");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains invalid: delimiter", e.getMessage());
+        }
+        try{
+            StrCalculator.add("//-\n-1-2");
+        }
+        catch(RuntimeException e){
+            assertEquals("INPUT INCORRECT! contains invalid: delimiter", e.getMessage());
+        }
+    }
 }
