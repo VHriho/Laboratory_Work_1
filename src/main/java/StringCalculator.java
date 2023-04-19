@@ -14,35 +14,57 @@ public class StringCalculator{
     }
 
     public int sum(String args){
+        if(args.charAt(0) == ',')
+            throw new RuntimeException("INPUT INCORRECT! contains invalid: delimiter");
         List<Integer> list_of_negatives = new ArrayList<Integer>();
         args = args.replaceAll("\n", ",");
         String[] str = args.split(",");
         int result = 0;
         int summing;
         for (int i = 0; i < str.length; i++){
-            try{
-                summing = Integer.parseInt(str[i]);
+            if(!str[i].isEmpty()){
+                try {
+                    summing = Integer.parseInt(str[i]);
+                }
+                catch (Exception e) {
+                    throw new RuntimeException("INPUT INCORRECT! contains invalid: delimiter");
+                }
+                if (summing < 0)
+                    list_of_negatives.add(summing);
+                if (summing > 1000)
+                    continue;
+                result += summing;
             }
-            catch (Exception e){
-                throw new RuntimeException("INPUT INCORRECT! contains invalid: delimiter");
-            }
-            if(summing < 0)
-                list_of_negatives.add(summing);
-            if (summing > 1000)
+            else
                 continue;
-            result += summing;
         }
         if(!list_of_negatives.isEmpty())
             throw new RuntimeException("INPUT INCORRECT! contains: negative " + list_of_negatives);
         return result;
     }
 
-    public String delimiter(String args) {
+    public String delimiter(String args){
+        StringBuilder str_of_delimiter = new StringBuilder();
         Character delimiter_in_char;
         args = args.substring(2);
-        delimiter_in_char = args.charAt(0);
-        args = args.substring(2);
-        args = args.replaceAll(delimiter_in_char.toString(), ",");
+        if (args.charAt(0) == '['){
+            for (int i = 1; args.charAt(i) != '\n'; i++){
+                str_of_delimiter.append(args.charAt(i));
+                if (args.charAt(i + 1) == ']'){
+                    args = args.replace(str_of_delimiter.toString(), ",");
+                    args = args.substring(4);
+                    return args;
+                }
+                else{
+                    continue;
+                }
+            }
+        }
+        else{
+            delimiter_in_char = args.charAt(0);
+            args = args.substring(2);
+            args = args.replaceAll(delimiter_in_char.toString(), ",");
+        }
         return args;
     }
 

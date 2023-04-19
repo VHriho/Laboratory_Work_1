@@ -92,4 +92,31 @@ class StringCalculatorTest {
         assertEquals(1999, StrCalculator.add("1000,999,1001,1200"));
         assertEquals(1000, StrCalculator.add("//;\n1000;1001"));
     }
+
+    @Test
+    public void Test_7(){
+        assertEquals(6, StrCalculator.add("//[-]\n1-2-3"));
+        assertEquals(6, StrCalculator.add("//[-]\n1-2--3")); //той випадок коли застосовуємо if(!str[i].isEmpty())
+        assertEquals(10, StrCalculator.add("//[;]\n1;2;;3;4"));
+        assertEquals(1999, StrCalculator.add("//[;]\n1000;1200;;999"));
+        try{
+            StrCalculator.add("//[-]\n-1-2--3");
+        }
+        catch(RuntimeException e) {
+            assertEquals("INPUT INCORRECT! contains invalid: delimiter", e.getMessage());
+        }
+        try{
+            StrCalculator.add("//[|]\n-1|2|-3");
+        }
+        catch(RuntimeException e) {
+            assertEquals("INPUT INCORRECT! contains: negative [-1, -3]", e.getMessage());
+        }
+        try{
+            StrCalculator.add("//[|-]\n-1|-2|-3");
+        }
+        catch(RuntimeException e) {
+            assertEquals("INPUT INCORRECT! contains: negative [-1]", e.getMessage());
+        }
+
+    }
 }

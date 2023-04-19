@@ -14,36 +14,58 @@ import java.util.List;
     }
 
     public int sum(String args){
-<span class="fc" id="L17">        List&lt;Integer&gt; list_of_negatives = new ArrayList&lt;Integer&gt;();</span>
-<span class="fc" id="L18">        args = args.replaceAll(&quot;\n&quot;, &quot;,&quot;);</span>
-<span class="fc" id="L19">        String[] str = args.split(&quot;,&quot;);</span>
-<span class="fc" id="L20">        int result = 0;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if(args.charAt(0) == ',')</span>
+<span class="fc" id="L18">            throw new RuntimeException(&quot;INPUT INCORRECT! contains invalid: delimiter&quot;);</span>
+<span class="fc" id="L19">        List&lt;Integer&gt; list_of_negatives = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L20">        args = args.replaceAll(&quot;\n&quot;, &quot;,&quot;);</span>
+<span class="fc" id="L21">        String[] str = args.split(&quot;,&quot;);</span>
+<span class="fc" id="L22">        int result = 0;</span>
         int summing;
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        for (int i = 0; i &lt; str.length; i++){</span>
-            try{
-<span class="fc" id="L24">                summing = Integer.parseInt(str[i]);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        for (int i = 0; i &lt; str.length; i++){</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">            if(!str[i].isEmpty()){</span>
+                try {
+<span class="fc" id="L27">                    summing = Integer.parseInt(str[i]);</span>
+                }
+<span class="fc" id="L29">                catch (Exception e) {</span>
+<span class="fc" id="L30">                    throw new RuntimeException(&quot;INPUT INCORRECT! contains invalid: delimiter&quot;);</span>
+<span class="fc" id="L31">                }</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">                if (summing &lt; 0)</span>
+<span class="fc" id="L33">                    list_of_negatives.add(summing);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">                if (summing &gt; 1000)</span>
+<span class="fc" id="L35">                    continue;</span>
+<span class="fc" id="L36">                result += summing;</span>
             }
-<span class="fc" id="L26">            catch (Exception e){</span>
-<span class="fc" id="L27">                throw new RuntimeException(&quot;INPUT INCORRECT! contains invalid: delimiter&quot;);</span>
-<span class="fc" id="L28">            }</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">            if(summing &lt; 0)</span>
-<span class="fc" id="L30">                list_of_negatives.add(summing);</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">            if (summing &gt; 1000)</span>
-<span class="fc" id="L32">                continue;</span>
-<span class="fc" id="L33">            result += summing;</span>
+            else
+                continue;
         }
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if(!list_of_negatives.isEmpty())</span>
-<span class="fc" id="L36">            throw new RuntimeException(&quot;INPUT INCORRECT! contains: negative &quot; + list_of_negatives);</span>
-<span class="fc" id="L37">        return result;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if(!list_of_negatives.isEmpty())</span>
+<span class="fc" id="L42">            throw new RuntimeException(&quot;INPUT INCORRECT! contains: negative &quot; + list_of_negatives);</span>
+<span class="fc" id="L43">        return result;</span>
     }
 
-    public String delimiter(String args) {
+    public String delimiter(String args){
+<span class="fc" id="L47">        StringBuilder str_of_delimiter = new StringBuilder();</span>
         Character delimiter_in_char;
-<span class="fc" id="L42">        args = args.substring(2);</span>
-<span class="fc" id="L43">        delimiter_in_char = args.charAt(0);</span>
-<span class="fc" id="L44">        args = args.substring(2);</span>
-<span class="fc" id="L45">        args = args.replaceAll(delimiter_in_char.toString(), &quot;,&quot;);</span>
-<span class="fc" id="L46">        return args;</span>
+<span class="fc" id="L49">        args = args.substring(2);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (args.charAt(0) == '['){</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            for (int i = 1; args.charAt(i) != '\n'; i++){</span>
+<span class="fc" id="L52">                str_of_delimiter.append(args.charAt(i));</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">                if (args.charAt(i + 1) == ']'){</span>
+<span class="fc" id="L54">                    args = args.replace(str_of_delimiter.toString(), &quot;,&quot;);</span>
+<span class="fc" id="L55">                    args = args.substring(4);</span>
+<span class="fc" id="L56">                    return args;</span>
+                }
+                else{
+                    continue;
+                }
+            }
+        }
+        else{
+<span class="fc" id="L64">            delimiter_in_char = args.charAt(0);</span>
+<span class="fc" id="L65">            args = args.substring(2);</span>
+<span class="fc" id="L66">            args = args.replaceAll(delimiter_in_char.toString(), &quot;,&quot;);</span>
+        }
+<span class="fc" id="L68">        return args;</span>
     }
 
 }
