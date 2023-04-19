@@ -48,16 +48,18 @@ public class StringCalculator{
         Character delimiter_in_char;
         args = args.substring(2);
         if (args.charAt(0) == '['){
-            for (int i = 1; args.charAt(i) != '\n'; i++){
-                str_of_delimiter.append(args.charAt(i));
-                if (args.charAt(i + 1) == ']'){
-                    args = args.replace(str_of_delimiter.toString(), ",");
-                    args = args.substring(4);
-                    return args;
+            for (int i = 1; args.charAt(i) != '\n'; i++) {
+                if (args.charAt(0) == '[') {
+                    str_of_delimiter.append(args.charAt(i));
+                    if (args.charAt(i + 1) == ']') {
+                        args = args.replace(str_of_delimiter.toString(), ",");
+                        str_of_delimiter = new StringBuilder();
+                        args = args.substring(3);
+                        i = 0;
+                    }
                 }
-                else{
-                    continue;
-                }
+                else
+                    break;
             }
         }
         else{

@@ -48,24 +48,26 @@ import java.util.List;
         Character delimiter_in_char;
 <span class="fc" id="L49">        args = args.substring(2);</span>
 <span class="fc bfc" id="L50" title="All 2 branches covered.">        if (args.charAt(0) == '['){</span>
-<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            for (int i = 1; args.charAt(i) != '\n'; i++){</span>
-<span class="fc" id="L52">                str_of_delimiter.append(args.charAt(i));</span>
-<span class="fc bfc" id="L53" title="All 2 branches covered.">                if (args.charAt(i + 1) == ']'){</span>
-<span class="fc" id="L54">                    args = args.replace(str_of_delimiter.toString(), &quot;,&quot;);</span>
-<span class="fc" id="L55">                    args = args.substring(4);</span>
-<span class="fc" id="L56">                    return args;</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            for (int i = 1; args.charAt(i) != '\n'; i++) {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                if (args.charAt(0) == '[') {</span>
+<span class="fc" id="L53">                    str_of_delimiter.append(args.charAt(i));</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                    if (args.charAt(i + 1) == ']') {</span>
+<span class="fc" id="L55">                        args = args.replace(str_of_delimiter.toString(), &quot;,&quot;);</span>
+<span class="fc" id="L56">                        str_of_delimiter = new StringBuilder();</span>
+<span class="fc" id="L57">                        args = args.substring(3);</span>
+<span class="fc" id="L58">                        i = 0;</span>
+                    }
                 }
-                else{
-                    continue;
-                }
+                else
+                    break;
             }
         }
         else{
-<span class="fc" id="L64">            delimiter_in_char = args.charAt(0);</span>
-<span class="fc" id="L65">            args = args.substring(2);</span>
-<span class="fc" id="L66">            args = args.replaceAll(delimiter_in_char.toString(), &quot;,&quot;);</span>
+<span class="fc" id="L66">            delimiter_in_char = args.charAt(0);</span>
+<span class="fc" id="L67">            args = args.substring(2);</span>
+<span class="fc" id="L68">            args = args.replaceAll(delimiter_in_char.toString(), &quot;,&quot;);</span>
         }
-<span class="fc" id="L68">        return args;</span>
+<span class="fc" id="L70">        return args;</span>
     }
 
 }
