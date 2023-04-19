@@ -132,4 +132,16 @@ class StringCalculatorTest {
             assertEquals("INPUT INCORRECT! contains: negative [-2, -3]", e.getMessage());
         }
     }
+
+    @Test
+    public void Test_9(){
+        assertEquals(6, StrCalculator.add("//[;;][%%%]\n1;;2%%%3"));
+        assertEquals(10, StrCalculator.add("//[;;][%%%][--]\n1;;2%%%3----4"));
+        try{
+            StrCalculator.add("//[;;][%%%][--]\n-1;;2%%%-3-----4");
+        }
+        catch(RuntimeException e) {
+            assertEquals("INPUT INCORRECT! contains: negative [-1, -3, -4]", e.getMessage());
+        }
+    }
 }
